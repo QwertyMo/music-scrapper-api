@@ -5,18 +5,22 @@ import * as SC from 'soundcloud-scraper'
 var links = ['soundcloud.com'];
 
 export default class SoundCloud{
+    
     client = new SC.Client();
 
     async searchURL(url: string): Promise <Track | Error>{
+
+        return new Error(
+            500,
+            "Can't get data from sound cloud :(",
+            "SERVER_ERROR"
+         ) 
 
         this.client.getSongInfo(url).then(async song =>{
             console.log(song);
             
         })
-        return {
-            message: "test",
-            type: "SERVER_ERROR"
-        }
+        
     }
 
     checkProvider(url: string): Boolean {

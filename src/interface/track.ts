@@ -1,4 +1,4 @@
-export type Track = {
+export class Track{
     name: string;
     description: string;
     isPlaylist: boolean;

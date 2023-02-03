@@ -18,12 +18,13 @@ export default class YouTube {
         duration: video.duration.seconds,
         provider: 'YouTube',
         url: video.url,
-      };
+      }; 
     } else
-      return {
-        message: 'Something were weong when search track',
-        type: 'SERVER_ERROR',
-      };
+    return new Error(
+      500,
+      "Something were weong when search track",
+      "SERVER_ERROR"
+   ) 
   }
 
   async searchURL(url: string): Promise<Track | Error> {
@@ -71,10 +72,11 @@ export default class YouTube {
     try {
       var video = await youtube({ videoId: id });
       if (video === undefined)
-        return {
-          message: 'Wrong video ID',
-          type: 'WRONG_ID',
-        };
+      return new Error(
+        404,
+        "Wrong video ID",
+        "WRONG_ID"
+     ) 
       return {
         name: video.title,
         description: video.description,
@@ -86,10 +88,11 @@ export default class YouTube {
         url: video.url,
       };
     } catch (e) {
-      return {
-        message: 'Wrong video ID',
-        type: 'WRONG_ID',
-      };
+      return new Error(
+        404,
+        "Wrong video ID",
+        "WRONG_ID"
+     ) 
     }
   }
 
@@ -99,10 +102,11 @@ export default class YouTube {
       var tracks: Track[] = [];
       var duration = 0;
       if (playlist == undefined)
-        return {
-          message: 'Wrong playlist ID',
-          type: 'WRONG_ID',
-        };
+      return new Error(
+        404,
+        "Wrong playlist ID",
+        "WRONG_ID"
+     ) 
       for (var video of playlist.videos) {
         // @ts-ignore
         duration += video.duration.seconds;
@@ -129,10 +133,11 @@ export default class YouTube {
         url: playlist.url,
       };
     } catch (e) {
-      return {
-        message: 'Wrong playlist ID',
-        type: 'WRONG_ID',
-      };
+      return new Error(
+        404,
+        "Wrong playlist ID",
+        "WRONG_ID"
+     ) 
     }
   }
 }

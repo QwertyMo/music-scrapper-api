@@ -4,7 +4,7 @@ export class Track{
     isPlaylist: boolean;
     duration: number;
     tracks: Track[];
-    provider: "YouTube" | "SoundCloud";
+    provider: "YouTube" | "SoundCloud" | "Yandex.Music";
     thumbnail: string | null;
     url: string;
   }

@@ -22,7 +22,7 @@ export default class YouTube {
     } else
     return new Error(
       500,
-      "Something were weong when search track",
+      "Something were wrong when search track",
       "SERVER_ERROR"
    ) 
   }

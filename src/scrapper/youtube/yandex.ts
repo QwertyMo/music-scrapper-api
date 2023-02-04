@@ -23,7 +23,8 @@ export default class Yandex{
             if(album!=undefined){
                 if(track!=undefined){
                     const params = new URLSearchParams();
-                    var data = await (await axios.post(apiurl + "/tracks", params)).data
+                    params.append("track-ids", track)
+                    var data = (await axios.post(apiurl + "/tracks/", params)).data
                     return {
                         name: data.result[0].title,
                         description: "",
@@ -36,7 +37,7 @@ export default class Yandex{
                       };
                 }
                 else{
-                    var data = await (await axios.get(apiurl + "/albums/" + album + "/with-tracks")).data
+                    var data = (await axios.get(apiurl + "/albums/" + album + "/with-tracks")).data
                     var tracks: Track[] = [];
                     var time = 0
                     for (var t of data.result.volumes[0]) {
@@ -65,7 +66,7 @@ export default class Yandex{
                 }
             }
             else if(user!=undefined && playlist!=undefined){
-                var data = await (await axios.get(apiurl + "/users/" + user + "/playlists/" + playlist)).data 
+                var data = (await axios.get(apiurl + "/users/" + user + "/playlists/" + playlist)).data 
                 var tracks: Track[] = [];
                 for (var t of data.result.tracks) {
                     tracks[tracks.length] = {
@@ -100,7 +101,7 @@ export default class Yandex{
         }catch(e){
             return new Error(
                 404,
-                "Bad request",
+                "Wrong link",
                 "WRONG_LINK"
              )
         }

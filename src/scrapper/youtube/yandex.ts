@@ -7,11 +7,12 @@ var apiurl = "https://api.music.yandex.net/"
 
 var token = "y0_AgAAAAAgSr5nAAG8XgAAAADbbb2uavmsD18GQrCzRlV5npdNwo3mxWg"
 
-var links = ['music.yandex.ru'];
+var links = ['music.yandex.ru', 'music.yandex.by'];
 
 export default class Yandex{
 
     async searchURL(url: string): Promise <Track | Error>{
+        url.replace(".by", ".ru")
         var track = url.split("track/")[1]
         var album = url.split("album/")[1]
         if(album!= undefined && album.includes("/")) album = album.split("/")[0]

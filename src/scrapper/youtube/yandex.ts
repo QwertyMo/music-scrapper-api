@@ -5,7 +5,7 @@ import { response } from 'express';
 
 var apiurl = "https://api.music.yandex.net/"
 
-var token = "y0_AgAAAAAgSr5nAAG8XgAAAADbbb2uavmsD18GQrCzRlV5npdNwo3mxWg"
+var token = ""
 
 var links = ['music.yandex.ru', 'music.yandex.by'];
 
